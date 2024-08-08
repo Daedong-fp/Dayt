@@ -1,4 +1,4 @@
-package com.example.dayt.dto.Request;
+package com.example.dayt.dto.request;
 
 import com.example.dayt.entity.Board;
 import lombok.Getter;

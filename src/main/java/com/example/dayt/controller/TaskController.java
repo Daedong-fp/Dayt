@@ -1,10 +1,10 @@
 package com.example.dayt.controller;
 
-import com.example.dayt.dto.Request.TaskRequest;
+import com.example.dayt.dto.request.TaskRequest;
 import com.example.dayt.dto.response.TaskResponse;
-import com.example.dayt.entity.Task;
 import com.example.dayt.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +14,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TaskController {
     private final TaskService taskService;
+
+
+    @Autowired
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
 
     @PostMapping
     public void createTask(@RequestBody TaskRequest request) {

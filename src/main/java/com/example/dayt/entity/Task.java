@@ -1,12 +1,14 @@
 package com.example.dayt.entity;
 
-import com.example.dayt.dto.Request.TaskRequest;
+import com.example.dayt.dto.request.TaskRequest;
+import com.example.dayt.entity.role.Role;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
 @Getter
@@ -17,9 +19,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "board_id", nullable = false)
-    private Board board;
+    private String color;
 
     private String userName;
 
@@ -33,12 +33,16 @@ public class Task {
     @Column(length = 10)
     private String status;
 
+    @CreatedDate
     private int createTime;
 
+    @LastModifiedDate
+    private int moveTime;
+
+
     @Builder
-    public Task(Long id, Board board, String userName, String title, String takeList, String status, int createTime) {
+    public Task(Long id,String userName, String title, String takeList, String status, int createTime) {
         this.id = id;
-        this.board = board;
         this.userName = userName;
         this.title = title;
         this.takeList = takeList;
@@ -52,8 +56,9 @@ public class Task {
         this.status = taskRequest.getStatus();
     }
 
-    public void move(Board targetBoard) {
-        this.board = targetBoard;
-    }
+//    public void move(Board targetBoard) {
+//        this.board = targetBoard;
+//    }
+
 }
 
