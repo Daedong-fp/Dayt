@@ -23,8 +23,6 @@ public class AuthController {
 
     private final ReissueService reissueService;
 
-
-
     @PostMapping("/login")
     public LoginResponse login(@RequestBody @Valid LoginRequest request){
         return loginService.login(request);
